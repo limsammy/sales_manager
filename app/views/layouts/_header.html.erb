@@ -1,0 +1,47 @@
+<nav class="navbar navbar-default navbar-static-top m-b-0">
+  <div class="navbar-header">
+    <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse">
+      <i class="ti-menu"></i>
+    </a>
+    <div class="top-left-part logo_img">
+      <a class="logo" href="/">
+        <b>
+          <%= image_tag 'mobile.png'%>
+        </b>
+        <span class="hidden-xs">
+          <%=image_tag 'header_logo1.png' %>
+        </span>
+      </a>
+    </div>
+    <ul class="nav navbar-top-links navbar-left hidden-xs active">
+      <li><a href="javascript:void(0)" class="open-close hidden-xs waves-effect waves-light"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+      </li>
+      <li class="in">
+        <form role="search" class="app-search hidden-xs">
+          <input type="text" placeholder="Search..." class="form-control"> <a href="" class="active"><i class="fa fa-search"></i></a>
+        </form>
+      </li>
+    </ul>
+    <% if current_user.present?%>
+      <ul class="nav navbar-top-links navbar-right pull-right">
+        <li class="dropdown ">
+          <a class="fa fa-user dropdown-toggle profile-pic" data-toggle="dropdown" href="#"><b class="hidden-xs"><%= current_user.email %></b> </a>
+          <ul class="dropdown-menu dropdown-user animated flipInY">
+            <li>
+              <%= link_to current_user  do%>
+                <i class="fa fa-user"></i>
+                Profile
+              <%end%>
+            </li>
+            <li>
+              <%=link_to destroy_user_session_path, :method=> :delete do %>
+                <i class="fa fa-power-off"></i>
+                Logout
+              <%end%>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    <%end%>
+  </div>
+</nav>

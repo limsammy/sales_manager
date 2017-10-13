@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ProjectCws</title>
+    <%= favicon_link_tag 'favicon.ico' %>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0"/>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+    <link href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-98340752-2"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments)};
+    gtag('js', new Date());
+    gtag('config', 'UA-98340752-2');
+    </script>
+  </head>
+  <body>
+    <%if current_user.present? %>
+    <div id="wrapper">
+      <%= render partial: 'layouts/header'%>
+      <%= render partial: 'layouts/sidebar'%>
+      <div id="page-wrapper">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <%= yield %>
+            </div>
+          </div>
+    <footer class="footer my_footer center ">
+   <%= render partial: 'layouts/footer'%>
+   <!-- 2017 &copy; cWs | build-v1.0 -->
+</footer>
+        </div>
+      </div>
+  </div>
+  <%else%>
+  <section id="wrapper" class="login-register">
+    <div class="gradient_overlay">
+      <div class="login-box">
+        <div class="white-box mg_top83">
+          <%= yield %>
+        </div>
+      </div>
+    </div
+  </section>
+<footer class="footer_in center ">
+   <%= render partial: 'layouts/footer'%>
+   <!-- 2017 &copy; cWs | build-v1.0 -->
+</footer>
+<%end%>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<div  class="row">
+  <div class='col-md-12'>
+    <%= f.input :name, as: :string,label: false,  input_html: {class: 'form-control masked exp_desp styl_text', placeholder: 'Customer Name Here'} %>
+  </div>
+</div>
+<div  class="row">
+  <div class='col-md-4'>
+    <%= f.input :phone_number, as: :string,  input_html: {class: 'form-control masked exp_desp ', placeholder: 'phone number'} %>
+  </div>
+  <div class='col-md-4'>
+    <%= f.input :fax,  input_html: {class: 'form-control masked exp_desp ', placeholder: 'fax'} %>
+  </div>
+  <div class='col-md-4'>
+    <%= f.input :department, as: :string, input_html: {class: 'form-control masked exp_desp ', placeholder: 'department'} %>
+  </div>
+</div>
+
+<%= f.fields_for :contacts do |c| %>
+  <h3> Contact</h3>
+  <%= c.input :name, label: 'Name', placeholder: 'Contact name' %>
+  <%= c.input :title, label: 'Title', placeholder: 'Title' %>
+  <%= c.input :email, label: 'Email', placeholder: 'Email' %>
+  <%= c.input :mob_number, label: 'Mobile Number', placeholder: 'Mobile Number' %>
+  <%= c.link_to_remove 'Remove' %>
+<% end %>
+<%= f.link_to_add 'Add contact', :contacts , class: 'remove4' %>
+<br>
+<%= f.fields_for :billing_address do |addr| %>
+  <h3> Billing Address</h3>
+  <%= render partial:'customers/shared/address', locals: {addr: addr}  %>
+<%end%>
+<%= f.link_to_add 'Add billing Address', :billing_address, class: 'remove1' %>
+<br>
+
+<%= f.fields_for :shipping_address do |addr| %>
+  <h3>Shipping Address</h3>
+  <%= render partial:'customers/shared/address', locals: {addr: addr} %>
+<%end%>
+
+<%= f.link_to_add 'Add Shipping Address', :shipping_address, class: 'remove2' %>
+<br>
+
+
+<%= f.fields_for :additional_address do |addr| %>
+  <h3>Additional Address</h3>
+  <%= render partial:'customers/shared/address', locals: {addr: addr}  %>
+<%end%>
+<%= f.link_to_add 'Add Additional Address', :additional_address, class: 'remove3' %>
+
+  <div class='col-md-12 text-center'>
+    <%= f.submit 'Save', class: 'btn btn-info btn-lg' %>
+  </div>
+

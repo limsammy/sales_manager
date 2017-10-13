@@ -1,0 +1,35 @@
+<div class="col-sm-12">
+  <div class="white-box">
+    <h3 class="box-title m-b-0  text-center">ORDERS</h3>
+      <div class="table-responsive custom_datatable">
+        <table id="orders_datatable" class="display  nowrap" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+              <th>Order Description</th>
+              <th>Order Number</th>
+              <th> Status </th>
+              <th>Edit</th>
+              <th> Delete </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @orders.each do |order| %>
+              <tr data-id="<%= order.id%>" data-status="<%= order.status %>">
+                <td><%= link_to order.description, order %></td>
+                <td><%= order.order_number %></td>
+                <td><%= select_tag :status, options_for_select(Order.statuses.map {|k, v| [k, v]}, Order.statuses[order.status]), class: "order_status satus_drpdwn" %>
+                <td><%= link_to 'Edit', edit_order_path(order) %></td>
+                <td><%= link_to 'Destroy', order, method: :delete, data: {confirm: 'Are yoy sure'} %>
+                </td>
+              </tr>
+            <%end%>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  datatable('orders_datatable', 1, [2,3], 20, [0,1])
+</script>
+
